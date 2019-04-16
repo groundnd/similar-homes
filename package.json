@@ -1,0 +1,75 @@
+{
+  "name": "similar_homes_module",
+  "version": "1.0.0",
+  "description": "Photo carousel component displaying 12 similar/nearby homes with rating and price info",
+  "main": "index.jsx",
+  "author": "Julian Venci",
+  "license": "M.I.T.",
+  "engines": {
+    "node": "8.15.1"
+  },
+  "scripts": {
+    "start": "nodemon ./server/index.js",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "test": "jest",
+    "test:watch": "jest --watch --colors",
+    "seed": "node server/db/seed.js"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "testPathIgnorePatterns": [
+      "node_modules"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.18.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "sequelize": "^5.2.8"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.6.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-react-css-modules": "^5.2.4",
+    "css-loader": "^1.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-to-json": "^3.3.5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "faker": "^4.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.6.0",
+    "jest-environment-enzyme": "^7.0.2",
+    "jest-enzyme": "^7.0.2",
+    "react-test-renderer": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
