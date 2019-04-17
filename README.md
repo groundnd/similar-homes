@@ -27,6 +27,16 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ## Development
 
+# CRUD API
+  ### 1. Get similar homes for the accommodation selected - (READ)
+  The components can retrieve and suggest similiar homes from the database for the selected accommodation
+
+  ```sh
+  GET - /bookings/:accommodationid/similar_homes
+  ```
+
+  - *There is no create, update, or delete API for this component*
+
 ### Installing Dependencies
 
 From within the root directory:
