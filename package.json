@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "build": "webpack",
+    "build": "webpack -d",
     "build:watch": "webpack --watch",
     "test": "jest",
     "test:watch": "jest --watch --colors",

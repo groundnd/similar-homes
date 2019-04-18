@@ -1,11 +1,12 @@
 const Sequelize = require('sequelize');
-const key = process.env.MYSQL_ROOT_PW || require('../../config/db-config');
+const config = process.env.MYSQL_ROOT_PW || require('../../config/db-config');
 
-const dbName = process.env.MYSQL_DATABASE || 'FEC';
+const dbName = 'SDC';
 
-const db = new Sequelize(dbName, 'root', key, {
+const db = new Sequelize(dbName, config.userName, config.password, {
   host: process.env.MYSQL_URL || 'localhost',
-  dialect: 'mysql',
+  dialect: 'postgres',
+  logging: false,
 });
 
 db
