@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "build": "webpack",
+    "build": "webpack -d",
     "build:watch": "webpack --watch",
     "test": "jest",
     "test:watch": "jest --watch --colors",
@@ -37,9 +37,10 @@
     "express": "^4.16.4",
     "mysql2": "^1.6.5",
     "nodemon": "^1.18.10",
+    "pg": "^7.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "sequelize": "^5.2.8"
+    "sequelize": "^5.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

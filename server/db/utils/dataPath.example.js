@@ -1,0 +1,1 @@
+module.exports.path = 'ABSOLUTE_PATH_TO_FILE';
