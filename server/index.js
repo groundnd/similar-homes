@@ -19,7 +19,7 @@ app.get('/homes/:host_id/nearby', models.Homes.findSimilarHomes);
 
 app.post('/homes', models.Homes.createHome);
 
-// app.put('/homes/:host_id/nearby', (req, res) =>
+app.put('/homes/:host_id', models.Homes.updateReview);
 
 app.delete('/homes/:host_id', models.Homes.deleteHome);
 
