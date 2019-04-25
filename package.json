@@ -34,8 +34,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-cassandra": "^2.3.0",
+    "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
     "nodemon": "^1.18.10",
     "pg": "^7.10.0",
