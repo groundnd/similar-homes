@@ -18,5 +18,11 @@ const Home = db.define('Home', {
 
 db.sync({ force: true })
   .then(() => db.query(`COPY "Homes" ("id","city","locationName","photoUrl","price","propertyAvail","rating","reviewCount") FROM '${data.path}' (DELIMITER(','));`)
-    .then(() => console.log('done'))
-    );
+    .then(() =>
+      db.query(`SELECT setval('"Homes_id_seq"', max(id)) FROM "Homes";`)
+        .then(() => {
+          console.log('done');
+
+        }) 
+    )
+  );

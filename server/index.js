@@ -17,7 +17,7 @@ app.use('/homes/:host_id', express.static(path.join(__dirname, '../client/dist')
 
 app.get('/homes/:host_id/nearby', models.Homes.findSimilarHomes);
 
-// app.post('/homes/:host_id/nearby', (req, res) =>
+app.post('/homes', models.Homes.createHome);
 
 // app.put('/homes/:host_id/nearby', (req, res) =>
 

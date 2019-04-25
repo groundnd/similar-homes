@@ -76,3 +76,5 @@ const writeTenMillionTimes = (writer, encoding, callback) => {
 }
 
 writeTenMillionTimes(writer, 'utf8', () => console.log('done'));
+
+module.exports = createSampleHomes;
