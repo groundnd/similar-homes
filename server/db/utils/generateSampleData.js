@@ -1,7 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
 const writer = fs.createWriteStream('./dbSEED.txt');
-const sample = require('./samplephotos');
 
 const randomPhoto = () => {
   const photoId = Math.floor(Math.random() * 208)
