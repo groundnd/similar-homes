@@ -8,13 +8,11 @@ const app = express();
 const port = process.env.PORT || 3004;
 
 
-app.use('/similarhomes/:host_id', express.static(path.join(__dirname, '../client/dist')));
+app.use('/accomdations/:host_id', express.static(path.join(__dirname, '../client/dist')));
 
 
 app.get('/similarhomes/:host_id/nearby', (req, res) => {
-  Home.findAll({ order: Sequelize.literal('rand()'), limit: 12 })
-    .then(data => res.send(data))
-    .catch(err => res.status(404).end(err));
+  const hostID = req.params.host_id;
 });
 
 app.listen(port, () => console.log(`yassss port ${port} is live!!!`));
