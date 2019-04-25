@@ -1,9 +1,11 @@
 const ExpressCassandra = require('express-cassandra');
+const sample = require('../utils/dataPath');
+
 let models = ExpressCassandra.createClient({
     clientOptions: {
         contactPoints: ['127.0.0.1'],
         protocolOptions: { port: 9042 },
-        keyspace: 'mykeyspace',
+        keyspace: 'SDC',
         queryOptions: {consistency: ExpressCassandra.consistencies.one}
     },
     ormOptions: {
@@ -15,7 +17,7 @@ let models = ExpressCassandra.createClient({
     }
 });
 
-let Homes = models.loadSchema('Home', {
+let Homes = models.loadSchema('Homes', {
     fields:{
       id: "int",
       propertyAvail: "text",
@@ -25,17 +27,26 @@ let Homes = models.loadSchema('Home', {
       rating: "decimal",
       reviewCount: "int",
       city: "text",
+      createdAt: "timestamp",
+      updatedAt: "timestamp",
     },
-    key:["id"]
+    key:[["city"],"price", "rating"],
+    clustering_order: {
+      "price": "asc",
+      "rating": "desc",
+    },
+    indexes: ["id"]
 });
 
-console.log(models.instance.Person === Homes);
+console.log(models.instance.Homes === Homes);
 
 // sync the schema definition with the cassandra database table
 // if the schema has not changed, the callback will fire immediately
 // otherwise express-cassandra will try to migrate the schema and fire the callback afterwards
 Homes.syncDB(function(err, result) {
-    if (err) throw err;
-    // result == true if any database schema was updated
-    // result == false if no schema change was detected in your models
+  if (err) throw err;
+  models.close(err => {
+    if(err) throw err;
+    console.log('connection closed');
+  });
 });

@@ -33,7 +33,7 @@ const randomType = (cityName) => {
 };
 
 const randomDescriptor = (cityName) => {
-  const homeDescriptor = ['Studio', 'Loft', 'Apartment', 'House', 'Home', 'Condo', 'Cabin', 'Sweet', 'Duplex', 'Town-Home', 'Villa', 'Vacation-House', 'Yurt', 'Bungaloo', 'Chalet', 'Penthouse', 'Terrace', 'Cottage'];
+  const homeDescriptor = ['Studio', 'Loft', 'Apartment', 'House', 'Home', 'Condo', 'Cabin', 'Suite', 'Duplex', 'Town-Home', 'Villa', 'Vacation-House', 'Yurt', 'Bungaloo', 'Chalet', 'Penthouse', 'Terrace', 'Cottage'];
   let buzzWord = faker.company.bsAdjective().split('');
   buzzWord[0] = buzzWord[0].toUpperCase();
   buzzWord = buzzWord.join('');
@@ -44,14 +44,14 @@ const createSampleHomes = () => {
   const date = new Date();
   const cityName = randomCity();
   const homeData = {
-    propertyAvail: randomType(cityName),
+    city: cityName,
+    createdAt: date.toISOString(),
     locationName: randomDescriptor(cityName),
     photoUrl: randomPhoto(),
     price: Math.floor(Math.random() * (1500 - 75)) + 75,
+    propertyAvail: randomType(cityName),
     rating: randomRating(),
     reviewCount: Math.floor(Math.random() * (1000 - 25)) + 25,
-    city: cityName,
-    createdAt: date.toISOString(),
     updatedAt: date.toISOString(),
   }
   return homeData;

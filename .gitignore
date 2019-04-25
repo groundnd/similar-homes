@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+dataPath.js
+dbSEED.txt
+
