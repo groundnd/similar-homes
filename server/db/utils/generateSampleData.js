@@ -4,8 +4,9 @@ const writer = fs.createWriteStream('./dbSEED.txt');
 const sample = require('./samplephotos');
 
 const randomPhoto = () => {
-  const urlPrefix = 'https://s3-us-west-1.amazonaws.com/fec-project-abodely-carousel/';
-  return urlPrefix + sample.homePhotos[Math.ceil(Math.random() * 93)];
+  const photoId = Math.floor(Math.random() * 208)
+  const urlPrefix = `https://s3-us-west-1.amazonaws.com/similar-homes/city/city${photoId}.jpg`;
+  return urlPrefix;
 }
 
 const generateCities = (number) => {
@@ -24,7 +25,7 @@ const randomCity = () => {
 
 const randomRating = () => {
   const rating = ['2', '2.5', '3', '3.5', '4', '4.5', '5'];
-  return rating[Math.ceil(Math.random() * 6)];
+  return rating[Math.floor(Math.random() * 7)];
 };
 
 const randomType = (cityName) => {
@@ -37,22 +38,19 @@ const randomDescriptor = (cityName) => {
   let buzzWord = faker.company.bsAdjective().split('');
   buzzWord[0] = buzzWord[0].toUpperCase();
   buzzWord = buzzWord.join('');
-  return `${buzzWord} ${homeDescriptor[Math.floor(Math.random() * 17)]} in ${cityName}`;
+  return `${buzzWord} ${homeDescriptor[Math.floor(Math.random() * 19)]} in ${cityName}`;
 };
 
 const createSampleHomes = () => {
-  const date = new Date();
   const cityName = randomCity();
   const homeData = {
     city: cityName,
-    createdAt: date.toISOString(),
     locationName: randomDescriptor(cityName),
     photoUrl: randomPhoto(),
     price: Math.floor(Math.random() * (1500 - 75)) + 75,
     propertyAvail: randomType(cityName),
     rating: randomRating(),
     reviewCount: Math.floor(Math.random() * (1000 - 25)) + 25,
-    updatedAt: date.toISOString(),
   }
   return homeData;
 };

@@ -10,9 +10,13 @@ const Home = db.define('Home', {
   rating: Sequelize.DECIMAL,
   reviewCount: Sequelize.INTEGER,
   city: Sequelize.STRING,
-});
+}, 
+{
+  timestamps: false,
+}
+);
 
 db.sync({ force: true })
-  .then(() => db.query(`COPY "Homes" FROM '${data.path}' (DELIMITER(','));`)
+  .then(() => db.query(`COPY "Homes" ("id","city","locationName","photoUrl","price","propertyAvail","rating","reviewCount") FROM '${data.path}' (DELIMITER(','));`)
     .then(() => console.log('done'))
     );
