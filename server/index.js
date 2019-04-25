@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const Sequelize = require('sequelize');
 const db = require('./db/index.js');
 const Home = require('./db/Home.js');
-const models = require('./models/models');
+const models = require('./models/controllers');
 
 const app = express();
 const port = process.env.PORT || 3004;
@@ -21,6 +21,6 @@ app.get('/homes/:host_id/nearby', models.Homes.findSimilarHomes);
 
 // app.put('/homes/:host_id/nearby', (req, res) =>
 
-// app.delete('/homes/:host_id/nearby', (req, res) =>
+app.delete('/homes/:host_id', models.Homes.deleteHome);
 
 app.listen(port, () => console.log(`yassss port ${port} is live!!!`));

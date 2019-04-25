@@ -20,7 +20,27 @@ module.exports = {
         })
         .catch(err => res.status(404).end(err));
     },
-    
+    createHome: (req, res) => {
+      const hostID = req.params.host_id;
 
+    },
+    updateHome: (req, res) => {
+      const hostID = req.params.host_id;
+      const addReview = `UPDATE "Homes" SET "reviewCount" = "reviewCount" + 1 where id=${hostID};`;
+      
+
+    },
+    deleteHome: (req, res) => {
+      const hostID = req.params.host_id;
+      const deleteHome = `DELETE FROM "Homes" where id=${hostID};`;
+      if (hostID > 10000000) {
+        db.query(deleteHome)
+          .then((data) => {
+            console.log(data);
+            res.sendStatus(202);
+          });
+      }
+
+    }
   }
 };
