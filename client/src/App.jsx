@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount() {
     const hostId = window.location.pathname.split('/')[2] || Math.floor(Math.random() * 100);
-    Axios.get(`/similarhomes/${hostId}/nearby`)
+    Axios.get(`/homes/${hostId}/nearby`)
       .then(res => this.setState({
         currentDisplay: res.data.slice(0, 3),
         next: res.data.slice(3),
@@ -48,7 +48,7 @@ class App extends Component {
 
   render() {
     const { currentDisplay, previous, next } = this.state;
-    return currentDisplay ? <Homes data={currentDisplay} handleNext={this.handleNext} handlePrev={this.handlePrev} prev={previous} next={next} /> : 'no data';
+    return currentDisplay ? <Homes data={currentDisplay} handleNext={this.handleNext} handlePrev={this.handlePrev} prev={previous} next={next} /> : 'Loading';
   }
 }
 

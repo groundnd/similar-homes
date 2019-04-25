@@ -24,6 +24,7 @@ app.get('/homes/:host_id/nearby', (req, res) => {
       const minPrice = home.price + 1;
       const maxPrice = minPrice + 10;
       const similarHomesQuery = `SELECT * from "Homes" where city='${city}' and price between ${minPrice} and ${maxPrice} and rating > 3 ORDER BY "reviewCount" DESC limit 12;`;
+      
       db.query(similarHomesQuery, { type: db.QueryTypes.SELECT })
         .then(homes => {
           res.status(200).send(homes);
