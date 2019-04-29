@@ -1,0 +1,21 @@
+config:
+  target: "http://localhost:3004"
+  phases:
+    - duration: 60
+      arrivalRate: 50
+      rampTo: 130
+  payload:
+    path: "./server/db/utils/id.csv"
+    fields: 
+      - "host_id"
+    skipHeader: true
+  defaults:
+    headers:
+      x-my-service-auth: "987401838271002188298567"
+scenarios:
+  - flow:
+    - get:
+        url: "/homes/{{host_id}}/nearby"
+    # - post:
+    #     url: "/homes"
+    #     weight: 1

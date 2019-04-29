@@ -62,4 +62,5 @@ typings/
 
 dataPath.js
 dbSEED.txt
-
+newrelic.js
+newrelic.agent.log

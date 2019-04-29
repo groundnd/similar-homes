@@ -22,7 +22,6 @@ db.sync({ force: true })
       db.query(`SELECT setval('"Homes_id_seq"', max(id)) FROM "Homes";`)
         .then(() => {
           console.log('done');
-
         }) 
     )
   );

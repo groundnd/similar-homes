@@ -1,6 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 const writer = fs.createWriteStream('./dbSEED.txt');
+const idWriter = fs.createWriteStream('./id.csv');
 
 const randomPhoto = () => {
   const photoId = Math.floor(Math.random() * 208)
@@ -75,6 +76,27 @@ const writeTenMillionTimes = (writer, encoding, callback) => {
   }
 }
 
-writeTenMillionTimes(writer, 'utf8', () => console.log('done'));
+const writeThousandTimes = (writer, encoding, callback) => {
+  let i = 1000;
+  write();
+  function write() {
+    let ok = true;
+    do {
+      let id = Math.floor(Math.random() * 10000000) + '\n';
+      i--;
+      if (i === 0) {
+        writer.write(id, encoding, callback);
+      } else {
+        ok = writer.write(id, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
+    }
+  }
+}
+
+// writeTenMillionTimes(writer, 'utf8', () => console.log('done'));
+writeThousandTimes(idWriter, 'utf8', () => console.log('IDs done'));
 
 module.exports = createSampleHomes;
