@@ -1,10 +1,9 @@
 const db = require('../db/index');
 const createSampleHome = require('../db/utils/generateSampleData');
 
-module.exports = {
+const models = {
   Homes: {
-    findSimilarHomes: (req, res) => {
-      const hostID = req.params.host_id;
+    findSimilarHomes: (hostID, cb) => {
       const findHomeQuery = `SELECT * from "Homes" 
         WHERE city=(SELECT city from "Homes" where id=${hostID}) and 
           price between (SELECT price from "Homes" where id=${hostID})+1 and 
@@ -14,8 +13,8 @@ module.exports = {
         LIMIT 12;`;
       db.query(findHomeQuery, { type: db.QueryTypes.SELECT })
         .then(homes => {
-              res.status(200).send(homes);
-            })      
+          cb(homes);
+        }) 
         .catch(err => res.status(404).end(err));
     },
     createHome: (req, res) => {
@@ -26,7 +25,6 @@ module.exports = {
         .then(result => {
           res.sendStatus(202);
         });
-
     },
     updateReview: (req, res) => {
       const hostID = req.params.host_id;
@@ -45,7 +43,8 @@ module.exports = {
             res.sendStatus(202);
           });
       }
-
     }
   }
 };
+
+module.exports.Homes = models.Homes;
