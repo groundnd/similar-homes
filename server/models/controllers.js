@@ -3,7 +3,8 @@ const createSampleHome = require('../db/utils/generateSampleData');
 
 const models = {
   Homes: {
-    findSimilarHomes: (hostID, cb) => {
+    findSimilarHomes: (req, res) => {
+      const hostID = req.params.host_id;
       const findHomeQuery = `SELECT * from "Homes" 
         WHERE city=(SELECT city from "Homes" where id=${hostID}) and 
           price between (SELECT price from "Homes" where id=${hostID})+1 and 
@@ -13,7 +14,7 @@ const models = {
         LIMIT 12;`;
       db.query(findHomeQuery, { type: db.QueryTypes.SELECT })
         .then(homes => {
-          cb(homes);
+          res.status(200).send(homes)
         }) 
         .catch(err => res.status(404).end(err));
     },

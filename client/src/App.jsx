@@ -13,11 +13,17 @@ class App extends Component {
   componentDidMount() {
     const hostId = window.location.pathname.split('/')[2] || Math.floor(Math.random() * 100);
     Axios.get(`/homes/${hostId}/nearby`)
-      .then(res => this.setState({
-        currentDisplay: res.data.slice(0, 3),
-        next: res.data.slice(3),
+      .then(res => {
+        const homes = res.data;
+        if (typeof homes === 'string') {
+          homes = JSON.parse(homes);
+        }
+        this.setState({
+        currentDisplay: homes.slice(0, 3),
+        next: homes.slice(3),
         previous: [],
-      }))
+        })
+      })
       .catch(err => console.error('Unable to complete: ', err));
   }
 
